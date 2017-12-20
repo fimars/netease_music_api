@@ -1,6 +1,5 @@
 # NeteaseMusicApi
-
-**TODO: Add description**
+网易云音乐API, Elixir版本.
 
 ## Installation
 

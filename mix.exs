@@ -25,6 +25,7 @@ defmodule NeteaseMusicApi.Mixfile do
     [
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 1.0"},
+      {:poison, "~> 3.1"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
     ]
   end
