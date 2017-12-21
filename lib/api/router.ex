@@ -11,6 +11,7 @@ defmodule ApiRouter do
   match "/login" do
     IO.inspect conn.query_params # Prints JSON query
     IO.inspect conn.body_params # Prints JSON POST body
+    IO.inspect HTTPoison.get! "https://www.baidu.com"
     send_resp(conn, 200, "login")
   end
 
