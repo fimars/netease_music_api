@@ -16,7 +16,7 @@ defmodule NeteaseMusicApi.Application do
     children = [
       # Starts a worker by calling: NeteaseMusicApi.Worker.start_link(arg)
       # {NeteaseMusicApi.Worker, arg},
-      Plug.Adapters.Cowboy.child_spec(:http, ApiRouter, [], [port: port])
+      Plug.Adapters.Cowboy.child_spec(:http, API.Router, [], [port: port])
     ]
     # Log port 4001 be listened.
     IO.ANSI.format([:red, :bright, "\n[NeteaseMusicAPI] #{port} be listened.\n"], true) |> IO.puts

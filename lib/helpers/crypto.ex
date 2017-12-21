@@ -33,14 +33,11 @@ defmodule Helpers.Crypto do
     :crypto.mod_pow(bitext, pubkey, modules) |> Base.encode16(case: :lower) |> String.pad_leading(256, "0")
   end
 
-  def encrypt(obj) do
-    {:ok, text} = Poison.encode(%{ "obj" => obj })
-    seckey = create_secret_key(16)
+  def encrypt(obj, seckey \\ create_secret_key(16)) do
+    {:ok, text} = Poison.encode(obj)
+
     enc_text = text |> aes_encrypt(@nonce) |> aes_encrypt(seckey)
     enc_seckey = ras_encrypt(seckey, @pubkey, @modules)
-    %{
-      "params" => enc_text,
-      "encSeckey" => enc_seckey
-    }
+    [{"params", enc_text}, {"encSecKey", enc_seckey}]
   end
 end
