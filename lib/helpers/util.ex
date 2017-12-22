@@ -46,7 +46,7 @@ defmodule Helpers.Util do
       "Host": "music.163.com",
       "Cookie": cookie,
       "User-Agent": ranUserAgent()
-    ] |> IO.inspect
+    ]
 
     HTTPoison.request!(
       method,

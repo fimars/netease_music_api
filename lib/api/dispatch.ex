@@ -5,7 +5,7 @@ defmodule API.Dispatch do
       "phone" => 15920013839,
       "password" => :crypto.hash(:md5, password) |> Base.encode16(case: :lower) ,
       "rememberLogin" => true
-    } |> IO.inspect
+    }
     createWebRequest(:post, "music.163.com", "/weapi/login/cellphone", data, "")
   end
 end

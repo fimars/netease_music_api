@@ -10,10 +10,29 @@ defmodule API.Router do
 
   # 登录接口
   match "/login" do
+    resp = Dispatch.login(conn.query_params)
+    
+    body = resp |> Map.get(:body)
+    cookies =
+      resp
+      |> Map.get(:headers)
+      |> Helpers.Find.all_matches("set-cookie")
+      |> Enum.map(&(elem(&1, 1)))
+      |> Enum.join("; ")
+
     conn
-    |> send_resp(200, Dispatch.login(conn.query_params) |> Map.get(:body))
+    |> put_resp_header("Set-Cookie", cookies) # Set Cookie 可能需要抽象成中间件
+    |> put_resp_content_type("application/json")
+    |> send_resp(200,  body)
   end
 
+  # cookie测试
+  get "/cookie" do
+    conn
+    |> put_resp_header("Set-Cookie", "a=1")
+    |> send_resp(200, "cookie be seted.")
+  end
+  
   get "/hello" do
     send_resp(conn, 200, "world")
   end
