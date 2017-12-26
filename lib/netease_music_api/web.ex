@@ -1,6 +1,4 @@
-defmodule API.Router do
-  alias API.Dispatch
-
+defmodule NeteaseMusicApi.Web do
   use Plug.Router
   # Notice the router contains a plug pipeline and by default it requires two
   # plugs: match and dispatch. match is responsible for finding a matching route
@@ -16,42 +14,18 @@ defmodule API.Router do
   plug :put_resp_content_type, "application/json"
   plug :dispatch
 
-
+  # WebAPI
   # 登录接口
-  match "/login" do
-    resp = Dispatch.login(conn.query_params)
-    
-    cookies =
-      resp
-      |> Map.get(:headers)
-      |> Helpers.Find.all_matches("set-cookie")
-      |> Enum.map(&(elem(&1, 1)))
-      |> Enum.join("; ")
-
-    body = resp |> Map.get(:body)
-
-    conn
-    |> put_resp_header("Set-Cookie", cookies) # Set Cookie 可能需要抽象成中间件
-    |> send_resp(200,  body)
-  end
-
+  match "/login", to: Router.Login
   # 获取用户信息,歌单，收藏，mv, dj 数量
-  get "/user/subcount" do
-    cookie = conn |> get_req_header("cookie")
-    resp = Dispatch.user_subcount(cookie)
-
-    conn
-    |> send_resp(200,  resp |> Map.get(:body))
-  end
-
+  get "/user/subcount", to: Router.User.Subcount
   # 获取用户歌单
-  get "/user/playlist" do
-    cookie = conn |> get_req_header("cookie")
-    resp = Dispatch.user_playlist(conn.query_params, cookie)
+  get "/user/playlist", to: Router.User.Playlist
+  # 获取歌单详情
+  get "/playlist/detail", to: Router.Playlist.Detail
+  # 获取音乐URL
+  get "/music/url", to: Router.Music.Url
 
-    conn
-    |> send_resp(200,  resp |> Map.get(:body))
-  end
 
   # cookie测试
   get "/cookie" do
