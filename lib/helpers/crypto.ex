@@ -6,27 +6,27 @@ defmodule Helpers.Crypto do
   @pubkey "010001" |> Integer.parse(16) |> elem(0)
   @keys "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" |> String.codepoints
   
+  @doc false
   def create_secret_key(size) do
     1..size
     |> Enum.map(fn _ -> Enum.random(@keys) end)
     |> Enum.join()
   end
 
-  @doc """
-  Padding need encrypt data.
-  """
+  @doc false
   @spec pad(String.t(), integer) :: String.t()
   def pad(data, block_size) do
     to_add = block_size - rem(byte_size(data), block_size)
     data <> to_string(:string.chars(to_add, to_add))
   end
   
-
+  @doc false
   def aes_encrypt(text, seckey) do
     lv = "0102030405060708"
     :crypto.block_encrypt(:aes_cbc128, seckey, lv, pad(text, 16)) |> Base.encode64
   end
 
+  @doc false
   def ras_encrypt(text, pubkey, modules) do
     text = text |> String.codepoints() |> Enum.reverse() |> Enum.join()
     bitext = text |> Base.encode16 |> Integer.parse(16) |> elem(0)
