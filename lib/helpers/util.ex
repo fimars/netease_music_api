@@ -1,10 +1,14 @@
-# Import Crypto Module
-import Helpers.Crypto
 
-defmodule Helpers.Util do
-  @moduledoc"""
+defmodule Helpers.Util do  
+  @moduledoc """
+  This is a coding Helpers util module.
   """
-  @doc"""
+  import Helpers.Crypto
+
+  @doc """
+  Get a UA by `Enum.random` in fake UAs.
+
+  Returns `String`
   """
   def ranUserAgent do
     # UserAgent list, be used to fake a request head UA.
@@ -31,8 +35,10 @@ defmodule Helpers.Util do
     ] |> Enum.random()
   end
 
-  @doc"""
-  Returns an HTTPoison need options Set.
+  @doc """
+  Create an HTTPoison by some options.
+
+  Returns `HTTPoison.Response`.
   """
   def createWebRequest(method, host, path, data, cookie) do
     url = "#{host}#{path}"

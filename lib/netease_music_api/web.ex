@@ -10,9 +10,10 @@ defmodule NeteaseMusicApi.Web do
   plug Plug.Parsers, parsers: [:json],
                               pass:  ["application/json"],
                               json_decoder: Poison
-  # put response ContentType: "application/json"
+  # plug cache_get
   plug :put_resp_content_type, "application/json"
   plug :dispatch
+  # plug cache_set
 
   # WebAPI
   # 登录接口
