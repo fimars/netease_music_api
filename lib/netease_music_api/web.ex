@@ -1,5 +1,6 @@
 defmodule NeteaseMusicApi.Web do
   use Plug.Router
+  import NeteaseMusicApi.Cache, only: [put_into_cache: 2, get_resp_cache: 2]
   # Notice the router contains a plug pipeline and by default it requires two
   # plugs: match and dispatch. match is responsible for finding a matching route
   # which is then forwarded to dispatch. This means users can easily hook into 
@@ -10,10 +11,10 @@ defmodule NeteaseMusicApi.Web do
   plug Plug.Parsers, parsers: [:json],
                               pass:  ["application/json"],
                               json_decoder: Poison
-  # plug cache_get
   plug :put_resp_content_type, "application/json"
+  # get from cache
+  plug :get_resp_cache
   plug :dispatch
-  # plug cache_set
 
   # WebAPI
   # 登录接口
@@ -36,7 +37,10 @@ defmodule NeteaseMusicApi.Web do
   end
   
   get "/hello" do
-    send_resp(conn, 200, Poison.encode!(%{ "message" => "word" }))
+    body = Poison.encode!(%{ "message" => "word" })
+    conn
+    |> send_resp(200, body)
+    |> put_into_cache(body)
   end
 
   match _ do
