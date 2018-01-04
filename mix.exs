@@ -53,7 +53,7 @@ defmodule NeteaseMusicApi.Mixfile do
   defp package do
     [
       # These are the default files included in the package
-      files: ["lib", "mix.exs", "README*", "LICENSE*"],
+      files: ["lib", "mix.exs", "readme*", "LICENSE*"],
       maintainers: ["fimars"],
       licenses: ["MIT"],
       links: %{"GitHub" => @repo_url}
