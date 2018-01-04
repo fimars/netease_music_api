@@ -1,10 +1,12 @@
 defmodule NeteaseMusicApi.Mixfile do
   use Mix.Project
 
+  @version "1.0.1"
+
   def project do
     [
       app: :netease_music_api,
-      version: "1.0.0",
+      version: @version,
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       deps: deps(),
@@ -14,8 +16,12 @@ defmodule NeteaseMusicApi.Mixfile do
       # Docs
       name: "NeteaseMusicAPI",
       source_url: "https://github.com/fimars/netease_music_api",
-      docs: [main: "README", # The main page in the docs
-              extras: ["README.md"]]
+      docs: [
+        main: "README", # The main page in the docs
+        extras: ["README.md"],
+        source_url: "https://hex.pm/packages/netease_music_api",
+        source_ref: "v#{@version}"
+      ]
     ]
   end
 
