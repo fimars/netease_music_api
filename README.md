@@ -9,7 +9,7 @@ by adding `netease_music_api` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:netease_music_api, "~> 1.0.0"}
+    {:netease_music_api, "~> 1.0.1"}
   ]
 end
 ```

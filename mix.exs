@@ -2,6 +2,7 @@ defmodule NeteaseMusicApi.Mixfile do
   use Mix.Project
 
   @version "1.0.1"
+  @repo_url "https://github.com/fimars/netease_music_api"
 
   def project do
     [
@@ -13,14 +14,14 @@ defmodule NeteaseMusicApi.Mixfile do
       description: description(),
       package: package(),
       dialyzer: [plt_add_deps: :transitive],
+      
       # Docs
       name: "NeteaseMusicAPI",
-      source_url: "https://github.com/fimars/netease_music_api",
       docs: [
-        main: "README", # The main page in the docs
-        extras: ["README.md"],
-        source_url: "https://hex.pm/packages/netease_music_api",
-        source_ref: "v#{@version}"
+        main: "readme", # The main page in the docs
+        extras: ["readme.md"],
+        source_ref: "v#{@version}",
+        source_url: @repo_url
       ]
     ]
   end
@@ -52,10 +53,10 @@ defmodule NeteaseMusicApi.Mixfile do
   defp package do
     [
       # These are the default files included in the package
-      files: ["lib", "mix.exs", "README*", "README*", "LICENSE*"],
+      files: ["lib", "mix.exs", "README*", "LICENSE*"],
       maintainers: ["fimars"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/fimars/netease_music_api"}
+      links: %{"GitHub" => @repo_url}
     ]
   end
 end
