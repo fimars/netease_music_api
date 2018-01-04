@@ -1,4 +1,16 @@
 defmodule Router.Login do
+  @moduledoc """
+  根据手机号登录
+
+  **Path:** `/login`
+
+  **Query:**
+  - `phone`: 手机号
+  - `password`: 密码
+
+  **Example**
+  - `/login?phone=129&password=abc`
+  """
   import Plug.Conn
   import Helpers.Util
 

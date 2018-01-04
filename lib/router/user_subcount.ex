@@ -1,4 +1,12 @@
 defmodule Router.User.Subcount do
+  @moduledoc """
+  获取用户信息,歌单，收藏，mv, dj 数量, 需要**登录**后调用
+
+  **Path:** `/user/subcount`
+
+  **Example**
+  - `/user/subcount`
+  """
   import Plug.Conn
   import Helpers.Util
 

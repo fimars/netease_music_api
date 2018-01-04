@@ -1,9 +1,8 @@
 require Logger
 defmodule NeteaseMusicApi.Cache do
+    @moduledoc false
     @oversec 60 * 2
-    @moduledoc """
-    This is a cache plug for restapi.
-    """
+    
     use Agent
     import Plug.Conn
 
@@ -22,6 +21,11 @@ defmodule NeteaseMusicApi.Cache do
         conn
     end
 
+    @doc """
+    Get a body by conn
+
+    Returns %Plug.Conn
+    """
     def get_resp_cache(%Plug.Conn{} = conn, _opts) do
         case Agent.get(__MODULE__, &Map.get(&1, key(conn))) do
             nil -> conn

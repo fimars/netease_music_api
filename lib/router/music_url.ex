@@ -1,4 +1,16 @@
 defmodule Router.Music.Url do
+  @moduledoc """
+  根据ID返回音乐mp3链接
+
+  **Path:** `/music/url`
+
+  **Query**
+  - `id`: 音乐id
+
+  **Example**
+  - `/music/url?id=29154959`
+  - `/music/url?id=29154959,2124`
+  """
   import Plug.Conn
   import Helpers.Util
   

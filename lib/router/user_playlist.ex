@@ -1,4 +1,15 @@
 defmodule Router.User.Playlist do
+  @moduledoc """
+  用户播放列表
+
+  **Path:** `/user/playlist`
+
+  **Query:**
+  - `uid`: 用户id
+
+  **Example**
+  - `/user/playlist?uid=350652322`
+  """
   import Plug.Conn
   import Helpers.Util
   

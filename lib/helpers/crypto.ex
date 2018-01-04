@@ -1,4 +1,5 @@
 defmodule Helpers.Crypto do
+  @moduledoc false
   # 常量
   # 参考 https://github.com/darknessomi/musicbox/wiki/
   @nonce "0CoJUm6Qyw8W8jud"
@@ -33,6 +34,7 @@ defmodule Helpers.Crypto do
     :crypto.mod_pow(bitext, pubkey, modules) |> Base.encode16(case: :lower) |> String.pad_leading(256, "0")
   end
 
+  @doc false
   def encrypt(obj, seckey \\ create_secret_key(16)) do
     {:ok, text} = Poison.encode(obj)
 

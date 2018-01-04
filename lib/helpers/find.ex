@@ -1,7 +1,5 @@
 defmodule Helpers.Find do
-  @moduledoc """
-  Implements methods to find elements in given collections by pattern matching.
-  """
+  @moduledoc false
 
   @doc """
   Finds the first element in a list to match a given pattern.

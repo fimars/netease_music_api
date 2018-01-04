@@ -1,4 +1,15 @@
 defmodule Router.Playlist.Detail do
+  @moduledoc """
+  播放列表详情
+
+  **Path:** `/playlist/detail`
+
+  **Query:**
+  - `id`: 播放列表id
+
+  **Example**
+  - `/playlist/detail?id=108406896`
+  """
   import Plug.Conn
   import Helpers.Util
   

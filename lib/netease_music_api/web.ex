@@ -1,4 +1,5 @@
 defmodule NeteaseMusicApi.Web do
+  @moduledoc false
   use Plug.Router
   import NeteaseMusicApi.Cache, only: [put_into_cache: 2, get_resp_cache: 2]
   # Notice the router contains a plug pipeline and by default it requires two

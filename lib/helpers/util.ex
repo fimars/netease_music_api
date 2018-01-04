@@ -1,8 +1,6 @@
 
 defmodule Helpers.Util do  
-  @moduledoc """
-  This is a coding Helpers util module.
-  """
+  @moduledoc false
   import Helpers.Crypto
 
   @doc """
