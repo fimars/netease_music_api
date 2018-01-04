@@ -19,6 +19,7 @@ defmodule Router.Login do
     conn
     |> put_resp_header("Set-Cookie", cookies) # Set Cookie 可能需要抽象成中间件
     |> send_resp(200,  body)
+    |> NeteaseMusicApi.Cache.put_into_cache(body)
   end
 
   def dispatch(%{ "phone" => phone, "password" => password }, cookie \\ "") do

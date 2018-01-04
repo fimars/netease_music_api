@@ -1,4 +1,6 @@
+require Logger
 defmodule NeteaseMusicApi.Cache do
+    @oversec 60 * 2
     @moduledoc """
     This is a cache plug for restapi.
     """
@@ -16,15 +18,20 @@ defmodule NeteaseMusicApi.Cache do
     """
     def put_into_cache(%Plug.Conn{state: :unset} = conn, _body), do: conn
     def put_into_cache(%Plug.Conn{state: :sent} = conn, body) do
-        Agent.update(__MODULE__, &Map.put(&1, key(conn), body))
+        Agent.update(__MODULE__, &Map.put(&1, key(conn), { Time.utc_now, body }))
         conn
     end
 
-    # TODO: Add Expiration Time
     def get_resp_cache(%Plug.Conn{} = conn, _opts) do
         case Agent.get(__MODULE__, &Map.get(&1, key(conn))) do
             nil -> conn
-            body -> conn |> send_resp(200, body) |> halt()
+            { time, body } ->
+                if Time.diff(Time.utc_now, time) > @oversec do
+                    conn
+                else
+                    Logger.info fn -> "[Cache] #{key(conn)} -> #{time}" end
+                    conn |> send_resp(200, body) |> halt()
+                end
         end
     end
 
