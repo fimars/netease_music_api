@@ -1,7 +1,7 @@
 defmodule NeteaseMusicApi.Mixfile do
   use Mix.Project
 
-  @version "1.0.1"
+  @version "1.0.2"
   @repo_url "https://github.com/fimars/netease_music_api"
 
   def project do
@@ -17,13 +17,9 @@ defmodule NeteaseMusicApi.Mixfile do
       
       # Docs
       name: "NeteaseMusicAPI",
-      docs: [
-        main: "readme", # The main page in the docs
-        extras: ["readme.md"],
+      docs: [extras: ["README.md"], main: "readme",
         source_ref: "v#{@version}",
-        source_url: @repo_url
-      ]
-    ]
+        source_url: @repo_url]]
   end
 
   # Run "mix help compile.app" to learn about applications.
@@ -53,7 +49,7 @@ defmodule NeteaseMusicApi.Mixfile do
   defp package do
     [
       # These are the default files included in the package
-      files: ["lib", "mix.exs", "readme*", "LICENSE*"],
+      files: ["lib", "mix.exs", "README*", "LICENSE*"],
       maintainers: ["fimars"],
       licenses: ["MIT"],
       links: %{"GitHub" => @repo_url}
