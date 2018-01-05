@@ -1,4 +1,4 @@
-# NeteaseMusicApi
+# NeteaseMusicAPI
 网易云音乐API, 基于Plug的Elixir版本.
 
 ## Installation
