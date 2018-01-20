@@ -21,6 +21,6 @@ defmodule Helpers.Find do
 
   @doc false
   def match(element, key) do
-    element |> elem(0) |> String.downcase === key |> String.downcase
+    element |> elem(0) |> String.downcase() === key |> String.downcase()
   end
 end

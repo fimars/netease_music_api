@@ -7,7 +7,7 @@ defmodule NeteaseMusicApi.Application do
 
   def start(_type, _args) do
     port =
-      case Mix.env do
+      case Mix.env() do
         :test -> 4002
         _ -> 4001
       end
@@ -16,11 +16,13 @@ defmodule NeteaseMusicApi.Application do
     children = [
       # Starts a worker by calling: NeteaseMusicApi.Worker.start_link(arg)
       # {NeteaseMusicApi.Worker, arg},
-      Plug.Adapters.Cowboy.child_spec(:http, NeteaseMusicApi.Web, [], [port: port]),
+      Plug.Adapters.Cowboy.child_spec(:http, NeteaseMusicApi.Web, [], port: port),
       NeteaseMusicApi.Cache
     ]
+
     # Log port 4001 be listened.
-    IO.ANSI.format([:red, :bright, "\n[NeteaseMusicAPI] #{port} be listened.\n"], true) |> IO.puts
+    IO.ANSI.format([:red, :bright, "\n[NeteaseMusicAPI] #{port} be listened.\n"], true)
+    |> IO.puts()
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

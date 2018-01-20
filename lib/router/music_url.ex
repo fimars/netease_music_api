@@ -13,8 +13,9 @@ defmodule Router.Music.Url do
   """
   import Plug.Conn
   import Helpers.Util
-  
+
   def init(options), do: options
+
   def call(conn, _opts) do
     body =
       conn
@@ -25,13 +26,14 @@ defmodule Router.Music.Url do
     conn
     |> send_resp(200, body)
   end
-  
-  def dispatch(cookie, %{ "id" => id }) do
+
+  def dispatch(cookie, %{"id" => id}) do
     data = %{
       "ids" => [id],
-      "br" => 999000,
+      "br" => 999_000,
       "csrf_token" => ''
     }
+
     createWebRequest(
       :post,
       "music.163.com",

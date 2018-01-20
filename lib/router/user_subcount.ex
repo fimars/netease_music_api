@@ -11,6 +11,7 @@ defmodule Router.User.Subcount do
   import Helpers.Util
 
   def init(options), do: options
+
   def call(conn, _opts) do
     body =
       conn
@@ -21,11 +22,12 @@ defmodule Router.User.Subcount do
     conn
     |> send_resp(200, body)
   end
-  
+
   def dispatch(cookie) do
     data = %{
-      "csrf_token" => "" 
+      "csrf_token" => ""
     }
+
     createWebRequest(
       :post,
       "music.163.com",
